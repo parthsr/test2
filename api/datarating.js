@@ -38,7 +38,7 @@ promise1.then((data) => {
       resolve(datajson);
     });
   }).then((data) => {
-    console.log(data);
+    // console.log(data);
     func(data);
   });
 });
