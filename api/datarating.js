@@ -34,8 +34,11 @@ promise1.then((data) => {
         results = JSON.parse(result[i]);
         datajson.books[i].rating = results.rating;
       }
-      console.log(datajson);
+      // console.log(datajson);
       resolve(datajson);
     });
+  }).then((data) => {
+    console.log(data);
+    func(data);
   });
 });
