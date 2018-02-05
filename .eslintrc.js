@@ -3,6 +3,7 @@ module.exports = {
     "rules":{
       "no-console": 0,
       "no-var": "error",
+      "no-loop-func": 0,
       "no-undef": 0,
       "indent": [
           "error", 2, { "FunctionDeclaration": {"body": 1, "parameters": 2} }
