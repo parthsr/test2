@@ -6,5 +6,10 @@ describe('testing whether the data is proper or not', () => {
       expect(data).not.toBe(null);
     });
   });
+  it('checking if the data is not null', () => {
+    promiseDataFormat.then((data) => {
+      expect(typeof data).toBe('object');
+    });
+  });
 });
 
