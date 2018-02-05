@@ -15,31 +15,27 @@ promise1.then((data) => {
     for (let i = 0; i < lengtdh; i += 1) {
       url.push(`https://5gj1qvkc5h.execute-api.us-east-1.amazonaws.com/dev/findBookById/${i + 1}`);
     }
-    const arrpromise = new Promise((resolve) => {
-      let responses = [];
-      let innerPromise;
-      for (let i = 0; i < lengtdh; i += 1) {
-        innerPromise = new Promise((resolve) => {
-          https.get(url[i], (res) => {
-            res.on('data', (chunk) => {
-              // console.log(chunk.toString());
-              resolve(chunk.toString());
-            });
+    let innerPromise = [];
+    for (let i = 0; i < lengtdh; i += 1) {
+      innerPromise[i] = new Promise((resolve) => {
+        https.get(url[i], (res) => {
+          res.on('data', (chunk) => {
+            // console.log(chunk.toString());
+            resolve(chunk.toString());
           });
         });
-        innerPromise.then((result) => {
-          // console.log(result);
-          data = func(data, result, i);
-          responses.push(result);
-        });
-        // console.log(responses);
+      });
+    }
+    console.log(data);
+    datajson = JSON.parse(data);
+    Promise.all(innerPromise).then((result) => {
+      console.log(result);
+      for (let i = 0; i < lengtdh; i += 1) {
+        results = JSON.parse(result[i]);
+        datajson.books[i].rating = results.rating;
       }
-      resolve(responses);
-    });
-    arrpromise.then((data) => {
-      // console.log(data);
+      console.log(datajson);
+      resolve(datajson);
     });
   });
-  console.log(data);
 });
-
