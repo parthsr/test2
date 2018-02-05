@@ -1,5 +1,6 @@
 function a(data) {
   console.log(data);
+  let newData = {};
   const jsondata = JSON.parse(data);
   for (let i = 0; i < jsondata.books.length; i += 1) {
     newData[jsondata.books[i].Author] = [];

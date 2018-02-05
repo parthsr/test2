@@ -26,10 +26,10 @@ promise1.then((data) => {
         });
       });
     }
-    console.log(data);
+    // console.log(data);
     datajson = JSON.parse(data);
     Promise.all(innerPromise).then((result) => {
-      console.log(result);
+      // console.log(result);
       for (let i = 0; i < lengtdh; i += 1) {
         results = JSON.parse(result[i]);
         datajson.books[i].rating = results.rating;
